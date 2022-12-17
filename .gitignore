@@ -1,3 +1,9 @@
+# Directories
+test/bin/*
+lib/*
+obj/*
+build/*
+
 # Prerequisites
 *.d
 
