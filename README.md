@@ -6,6 +6,7 @@ Before installing make sure that you have these dependencies to be able to compi
 2. [make](https://man.archlinux.org/man/make.1)
 3. [ranlib](https://man.archlinux.org/man/ranlib.1)
 4. [gfortran](https://man.archlinux.org/man/gfortran.1)
+
 Now to install the dependency you only will need to run the makefile like this.
 ```
 make install -B
