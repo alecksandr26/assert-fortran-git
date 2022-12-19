@@ -13,7 +13,7 @@ Before installing make sure that you have these dependencies to be able to compi
 3. [ranlib](https://man.archlinux.org/man/ranlib.1)
 4. [gfortran](https://man.archlinux.org/man/gfortran.1)
 
-Now to install the dependency you only will need to run the makefile with these flags.
+You can download the latest [realese](https://github.com/alecksandr26/Fortran-Assertion-Module/releases) of the project, then to install the dependency you only will need to run the makefile with these flags.
 ```
 make install -B
 ```
