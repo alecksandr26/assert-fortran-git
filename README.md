@@ -1,4 +1,9 @@
-# Fortran Assertion Module
+# Table of Contents
+1. [Description](#Description)
+2. [Install](#Install)
+3. [Getting started](#Getting started)
+
+# Description
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
 # Install
 Before installing make sure that you have these dependencies to be able to compile the project.
