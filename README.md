@@ -20,7 +20,7 @@ make install -B
 The `-B` flag is needed to be able to re compile everything, the `.mod` file should be installed in `/usr/include/` and the `.a` file should be installed in
 `/usr/lib/` and obviously, this operation will require sudo permission.
 If you want to do it manually, you will find the `.mod` file and `.a` file in the `build/` directory.
-# Getting-started
+# Getting-Started
 As I said before this module works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives,
 then inside of the module where you want to make assertions, you only need to write this macro function.
 ```
