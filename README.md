@@ -35,5 +35,8 @@ gfortran -cpp test_assert.f90 -I/usr/include -lassert
 The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to be able to include the `assert` module. 
 
 # Examples
+## Picture Example
+![image](https://user-images.githubusercontent.com/66882463/208545605-669cbd4d-d686-487b-8cdc-53bbf2d8ef0a.png)
+## Video Example
 https://user-images.githubusercontent.com/66882463/208544892-f658eb38-eddf-4ec5-88f9-fedc046c41bc.mp4
 
