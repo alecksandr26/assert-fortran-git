@@ -12,7 +12,4 @@ program test_assert
     res = n1 + n2
     assert(res == 3)            ! Pass this assertion
 end program test_assert
-
-    
-
     
