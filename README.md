@@ -1,7 +1,7 @@
 # Table of Contents
 1. [Description](#Description)
 2. [Install](#Install)
-3. [Getting-started](#Getting-started)
+3. [Getting-Started](#Getting-Started)
 4. [Examples](#Examples)
 
 # Description
