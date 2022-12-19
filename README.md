@@ -21,4 +21,9 @@ then inside of the module where you want to make assertions, you only need to wr
 #define assert(cond) call assertion(cond, "cond", __FILE__, __LINE__)
 ```
 As you can see it is going to call a subrutine called `assertion`, and with the `-cpp` [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives information, we can have a complete assertion.
+
 Then to compile the modules or the program, you need to set these flags.
+```
+gfortran -cpp test_assert.f90 -I/usr/include -lassert
+```
+The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to be able to include the `assert` module. 
