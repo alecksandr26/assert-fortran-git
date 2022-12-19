@@ -1,5 +1,5 @@
-
-! To make it easy to use assert is necessary to create a macro function
+    ! To make it easy to use assert is necessary
+    ! to create a macro function
 #define assert(cond) call assertion(cond, "cond", __FILE__, __LINE__)
 
 program test_assert
@@ -10,6 +10,6 @@ program test_assert
     integer :: res
 
     res = n1 + n2
-    assert(res == 3)            ! Pass this assertion
+    assert(res == 4)            ! Pass this assertion
 end program test_assert
     
