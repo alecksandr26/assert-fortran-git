@@ -11,5 +11,6 @@ Now to install the dependency you only will need to run the makefile like this.
 ```
 make install -B
 ```
-The `-B` flag is needed to be able to re compile everything.
+The `-B` flag is needed to be able to re compile everything, the `.mod` file should be installed in `/usr/include/` and the `.a` file should be installed in
+`/usr/lib/`.
 # Getting started
