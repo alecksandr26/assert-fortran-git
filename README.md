@@ -37,6 +37,8 @@ The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to 
 # Examples
 ## Picture Example
 This is an example of a failed assertion.
+![image](https://user-images.githubusercontent.com/66882463/208545832-dc47fd2a-bf13-46d5-ad0c-589f57ecf5cd.png)
+
 ![image](https://user-images.githubusercontent.com/66882463/208545605-669cbd4d-d686-487b-8cdc-53bbf2d8ef0a.png)
 ## Video Example
 https://user-images.githubusercontent.com/66882463/208544892-f658eb38-eddf-4ec5-88f9-fedc046c41bc.mp4
