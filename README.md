@@ -1,10 +1,11 @@
 # Table of Contents
 1. [Description](#Description)
 2. [Install](#Install)
-3. [Installation-from-source](#Installation-from-source)
-4. [Installation-from-AUR](#Installation-from-AUR)
-5. [Getting-Started](#Getting-Started)
-6. [Examples](#Examples)
+3. [Installation-with-yay](#Installation-with-yay)
+4. [Installation-from-source](#Installation-from-source)
+5. [Installation-from-AUR](#Installation-from-AUR)
+6. [Getting-Started](#Getting-Started)
+7. [Examples](#Examples)
 
 # Description
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
