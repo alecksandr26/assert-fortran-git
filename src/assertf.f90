@@ -1,4 +1,4 @@
-module assert
+module assertf
     implicit none
     
 contains
@@ -15,4 +15,4 @@ contains
             call abort()       ! Abort the program if the assertion is not true
         end if
     end subroutine assertion
-end module assert
+end module assertf

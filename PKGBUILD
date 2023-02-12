@@ -8,9 +8,9 @@ pkgname=assert-fortran
 pkgver=1.1.0
 pkgrel=1
 epoch=
-pkgdesc="This is an assertion module for fortran"
+pkgdesc="This is an assertion module for fortran, easy to use"
 arch=(x86_64)
-url="https://github.com/alecksandr26/fortran-assertion"
+url="https://github.com/alecksandr26/assert-fortran"
 license=('MIT license')
 depends=()
 makedepends=(gcc-fortran git make binutils coreutils)
@@ -32,5 +32,5 @@ package() {
     mkdir -p usr
     mkdir -p usr/lib
     cp ../../src/$pkgname/lib/libassert.a usr/lib/
-    cp -r ../../src/$pkgname/include/* usr/include/
+    cp -r ../../src/$pkgname/include usr/
 }

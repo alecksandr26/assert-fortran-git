@@ -35,13 +35,13 @@ BUILD_OBJ_DIR = $(addprefix $(BUILD_DIR)/, obj)
 BUILD_LIB_DIR = $(addprefix $(BUILD_DIR)/, lib)
 
 # The dependencies 
-OBJS = $(addprefix $(OBJ_DIR)/, assert.o)
+OBJS = $(addprefix $(OBJ_DIR)/, assertf.o)
 
 # The libraries
-LIBS = $(addprefix $(LIB_DIR)/, libassert.a)
+LIBS = $(addprefix $(LIB_DIR)/, libassertf.a)
 
 # The tests
-TESTS = $(addprefix $(TEST_BIN_DIR)/, test_assert.out)
+TESTS = $(addprefix $(TEST_BIN_DIR)/, test_assertf.out)
 
 # Build all
 all: $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS) $(TESTS)
@@ -72,7 +72,7 @@ $(LIB_DIR)/lib%.a: $(OBJ_DIR)/%.o
 	@ranlib $@
 
 # To Build the objects in the bebug mode
-$(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a $(INCLUDE_DIR)/%f.h
+$(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a $(INCLUDE_DIR)/%.h
 	@echo Compiling: $^ -o $@
 	@$(F) $(F_FLAGS) -I$(OBJ_DIR) $^ -o $@
 
