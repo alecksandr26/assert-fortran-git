@@ -2,7 +2,7 @@
 #include "../../include/assertf.h"
 
 program test_assert
-    use assert
+    use assertf
     implicit none
     
     integer, parameter :: n1 = 1, n2 = 2

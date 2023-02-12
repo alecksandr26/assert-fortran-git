@@ -59,6 +59,10 @@ $(TEST_BIN_DIR):
 	@echo Creating: $@
 	@mkdir -p $@
 
+$(BUILD_DIR):
+	@echo Creating: $@
+	@mkdir -p $@
+
 # To Build the objects in the bebug mode
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.f90
 	@echo Compiling: $< -o $@
@@ -73,30 +77,47 @@ $(LIB_DIR)/lib%.a: $(OBJ_DIR)/%.o
 
 # To Build the objects in the bebug mode
 $(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a $(INCLUDE_DIR)/%.h
-	@echo Compiling: $^ -o $@
-	@$(F) $(F_FLAGS) -I$(OBJ_DIR) $^ -o $@
+	@echo Compiling: $< $(word 2, $^) -o $@
+	@$(F) $(F_FLAGS) -I$(OBJ_DIR)/ $< $(word 2, $^) -o $@
+
+# To clean any compiled test
+.PHONY: clean_$(TEST_BIN_DIR)/%.out
+clean_$(TEST_BIN_DIR)/%.out: 
+	@echo Removing: $(TEST_BIN_DIR)/$(notdir $@)
+	@rm $(TEST_BIN_DIR)/$(notdir $@)
+
+# To clean any compiled object
+.PHONY: clean_$(OBJ_DIR)/%.o
+clean_$(OBJ_DIR)/%.o: $(OBJ_DIR)/%.o
+	@echo Removing: $(OBJ_DIR)/$(notdir $@)
+	@rm $(OBJ_DIR)/$(notdir $@)
+
+# To clean any module objec
+.PHONY: clean_$(OBJ_DIR)/%.mod
+clean_$(OBJ_DIR)/%.mod: $(OBJ_DIR)/%.mod
+	@echo Removing: $(OBJ_DIR)/$(notdir $@)
+	@rm $(OBJ_DIR)/$(notdir $@)
+
+# To clean any compiled library
+.PHONY: clean_$(LIB_DIR)/lib%.a
+clean_$(LIB_DIR)/lib%.a: $(LIB_DIR)/lib%.a
+	@echo Removing: $(LIB_DIR)/$(notdir $@)
+	@rm $(LIB_DIR)/$(notdir $@)
 
 # Remove all the compiled things
-clean:
-	@echo Cleaning:
-	$(foreach obj, $(shell ls $(OBJ_DIR)/ 2>/dev/null), \
-		@echo Removing: $(OBJ_DIR)/$(obj) $(\n) \
-		@rm $(OBJ_DIR)/$(obj) $(\n))
-	$(foreach lib, $(shell ls $(LIB_DIR)/ 2>/dev/null), \
-		@echo Removing: $(LIB_DIR)/$(lib) $(\n) \
-		@rm $(LIB_DIR)/$(lib) $(\n))
-	$(foreach test, $(shell ls $(TEST_BIN_DIR)/ 2>/dev/null), \
-		@echo Removing: $(test) $(\n) \
-		@rm $(TEST_BIN_DIR)/$(test) $(\n))
-
-ifneq ("$(wildcard $(LIB_DIR)/)", "")
+.PHONY: clean
+clean: $(addprefix clean_, $(wildcard $(LIB_DIR)/*.a)) \
+       $(addprefix clean_, $(wildcard $(OBJ_DIR)/*.o)) \
+       $(addprefix clean_, $(wildcard $(OBJ_DIR)/*.mod)) \
+	   $(addprefix clean_, $(wildcard $(TEST_BIN_DIR)/*.out))
+ifneq ("$(wildcard $(LIB_DIR))", "")
 		@echo Removing: $(LIB_DIR)
 		@rmdir $(LIB_DIR)
 endif
 
 ifneq ("$(wildcard $(OBJ_DIR))", "")
 		@echo Removing: $(OBJ_DIR)
-		@rm -r $(OBJ_DIR)
+		@rmdir $(OBJ_DIR)
 endif
 
 ifneq ("$(wildcard $(TEST_BIN_DIR))", "")
@@ -108,9 +129,9 @@ ifneq ("$(wildcard $(BUILD_DIR))", "")
 		@echo Removing: $(BUILD_DIR)
 		@rm -r $(BUILD_DIR)
 endif
-	@echo Cleaned:
 
 # To run an specific test
+.PHONY: test_%.out
 test_%.out: $(TEST_BIN_DIR)/test_%.out
 	@echo Testing:
 	@echo Running: $<
@@ -118,6 +139,7 @@ test_%.out: $(TEST_BIN_DIR)/test_%.out
 	@echo Passed:
 
 # To run all the tests
+.PHONY: tests
 tests: $(TESTS)
 	@echo Testing:
 	$(foreach test, $(TESTS), \
@@ -125,32 +147,41 @@ tests: $(TESTS)
 		@valgrind --leak-check=full --track-origins=yes -s ./$(test) $(\n))
 	@echo Passed:
 
-# To compile the release lib
-compile: F_FLAGS = -cpp -O3
-compile: clean $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
-	@echo Creating: $(BUILD_DIR)
-	@mkdir -p $(BUILD_DIR)
-	@echo Build:
-	$(foreach lib, $(LIBS), \
-		@echo Copying: $(lib) -o $(BUILD_DIR)/$(notdir $(lib)) $(\n) \
-		@cp $(lib) $(BUILD_DIR)/ $(\n))
+# Recompile everything again with a different flags
+$(BUILD_DIR)/lib%.a:
+	@$(MAKE) -B F_FLAGS="-cpp -O3" $(LIB_DIR)/$(notdir $@)
+	@echo Copying: $(LIB_DIR)/$(notdir $@) -o $@
+	@cp $(LIB_DIR)/$(notdir $@) $@
 
-# The module file
-	$(foreach obj, $(OBJS), \
-		@echo Copying: $(basename $(obj)).mod -o $(BUILD_DIR)/$(basename $(notdir $(obj))).mod $(\n) \
-		@cp $(basename $(obj)).mod $(BUILD_DIR)/ $(\n))
+# To Copy the mod file
+$(BUILD_DIR)/%.mod:
+	@echo Copying: $(OBJ_DIR)/$(notdir $@) -o $@
+	@cp $(OBJ_DIR)/$(notdir $@) $@
+
+# To copy the header file to the build directory
+$(BUILD_DIR)/%.h: $(INCLUDE_DIR)/%.h
+	@echo Copying: $< -o $@
+	@cp $< $@
+
+# To recompile the release lib
+.PHONY: compile
+compile: $(OBJ_DIR) $(LIB_DIR) $(BUILD_DIR) \
+		 $(addprefix $(BUILD_DIR)/, $(notdir $(LIBS))) \
+	     $(addprefix $(BUILD_DIR)/, $(notdir $(wildcard $(INCLUDE_DIR)/*.h))) \
+         $(addprefix $(BUILD_DIR)/, $(addsuffix .mod, $(notdir $(basename $(OBJS)))))
 
 # To install the lib
+.PHONY: install
 install: compile
 	@echo Install:
 	$(foreach lib, $(LIBS), \
 		@echo Installing: $(lib) -o $(INSTALL_DIR_LIB)/$(notdir $(lib)) $(\n) \
-		sudo $(INSTALL) $(lib) $(INSTALL_DIR_LIB)/ $(\n))
+		sudo $(INSTALL) $(lib) $(INSTALL_DIR_LIB)/$(notdir lib) $(\n))
 
 	$(foreach obj, $(OBJS), \
 		@echo Installing: $(basename $(obj)).mod -o \
 					$(INSTALL_DIR_HEADER)/$(basename $(notdir $(obj))).mod $(\n) \
-		sudo $(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/ $(\n))
+		sudo $(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/$(basename $(obj)).mod  $(\n))
 
 	@echo Installing: $(INCLUDE_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
 	sudo $(INSTALL) $(INCLUDE_DIR)/assertf.h $(INSTALL_DIR_HEADER)/assertf.h

@@ -31,6 +31,7 @@ package() {
     cd $pkgdir
     mkdir -p usr
     mkdir -p usr/lib
-    cp ../../src/$pkgname/lib/libassert.a usr/lib/
-    cp -r ../../src/$pkgname/include usr/
+    mkdir -p usr/include
+    cd ../../src/$pkgname
+    make ROOT_DIR=$pkgdir install
 }
