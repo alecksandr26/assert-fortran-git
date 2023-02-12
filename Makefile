@@ -173,15 +173,9 @@ compile: $(OBJ_DIR) $(LIB_DIR) $(BUILD_DIR) \
 # To install the lib
 .PHONY: install
 install: compile
-	@echo Install:
-	$(foreach lib, $(LIBS), \
-		@echo Installing: $(lib) -o $(INSTALL_DIR_LIB)/$(notdir $(lib)) $(\n) \
-		$(INSTALL) $(lib) $(INSTALL_DIR_LIB)/$(notdir lib) $(\n))
-
-	$(foreach obj, $(OBJS), \
-		@echo Installing: $(basename $(obj)).mod -o \
-					$(INSTALL_DIR_HEADER)/$(basename $(notdir $(obj))).mod $(\n) \
-		$(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/$(basename $(obj)).mod  $(\n))
-
-	@echo Installing: $(INCLUDE_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
-	$(INSTALL) $(INCLUDE_DIR)/assertf.h $(INSTALL_DIR_HEADER)/assertf.h
+	@echo Installing: $(BUILD_DIR)/assertf.a -o $(INSTALL_DIR_LIB)/assertf.a
+	$(INSTALL) $(BUILD_DIR)/assertf.a -t $(INSTALL_DIR_LIB)
+	@echo Installing: $(BUILD_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
+	$(INSTALL) $(BUILD_DIR)/assertf.h -t $(INSTALL_DIR_HEADER)/assertf.h
+	@echo Installing: $(BUILD_DIR)/assertf.mod -o $(INSTALL_DIR_HEADER)/assertf.mod
+	$(INSTALL) $(BUILD_DIR)/assertf.mod -t $(INSTALL_DIR_HEADER)/assertf.mod
