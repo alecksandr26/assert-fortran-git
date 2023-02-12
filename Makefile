@@ -173,8 +173,8 @@ compile: $(OBJ_DIR) $(LIB_DIR) $(BUILD_DIR) \
 # To install the lib
 .PHONY: install
 install: compile
-	@echo Installing: $(BUILD_DIR)/assertf.a -o $(INSTALL_DIR_LIB)/assertf.a
-	$(INSTALL) $(BUILD_DIR)/assertf.a -t $(INSTALL_DIR_LIB)
+	@echo Installing: $(BUILD_DIR)/libassertf.a -o $(INSTALL_DIR_LIB)/assertf.a
+	$(INSTALL) $(BUILD_DIR)/libassertf.a -t $(INSTALL_DIR_LIB)
 	@echo Installing: $(BUILD_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
 	$(INSTALL) $(BUILD_DIR)/assertf.h -t $(INSTALL_DIR_HEADER)/assertf.h
 	@echo Installing: $(BUILD_DIR)/assertf.mod -o $(INSTALL_DIR_HEADER)/assertf.mod
