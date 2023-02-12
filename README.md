@@ -2,12 +2,16 @@
 1. [Description](#Description)
 2. [Install](#Install)
 3. [Installation-from-source](#Installation-from-source)
-4. [Getting-Started](#Getting-Started)
-5. [Examples](#Examples)
+4. [Installation-from-AUR](#Installation-from-AUR)
+5. [Getting-Started](#Getting-Started)
+6. [Examples](#Examples)
 
 # Description
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
 # Install
+## Installation-from-AUR
+
+
 ## Installation-from-source
 Before installing make sure that you have these dependencies to be able to compile the project.
 1. [ar](https://man.archlinux.org/man/ar.1.en)
