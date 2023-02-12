@@ -23,10 +23,10 @@ OBJ_DIR = obj
 SRC_DIR = src
 TEST_DIR = test
 LIB_DIR = lib
-BUILD_DIR = compile
+BUILD_DIR = build
 INCLUDE_DIR = include
-INSTALL_DIR_LIB = /usr/lib
-INSTALL_DIR_HEADER = /usr/include
+INSTALL_DIR_LIB = $(ROOT_DIR)/usr/lib
+INSTALL_DIR_HEADER = $(ROOT_DIR)/usr/include
 
 # The nested directories
 TEST_SRC_DIR = $(addprefix $(TEST_DIR)/, src)
@@ -62,7 +62,7 @@ $(TEST_BIN_DIR):
 # To Build the objects in the bebug mode
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.f90
 	@echo Compiling: $< -o $@
-	$(F) $(F_FLAGS) -c $< -o $@
+	@$(F) $(F_FLAGS) -c $< -o $@
 	@mv $(basename $(notdir $<)).mod $(OBJ_DIR)/
 
 # To Build the lib
@@ -72,30 +72,42 @@ $(LIB_DIR)/lib%.a: $(OBJ_DIR)/%.o
 	@ranlib $@
 
 # To Build the objects in the bebug mode
-$(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a
+$(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a $(INCLUDE_DIR)/%f.h
 	@echo Compiling: $^ -o $@
 	@$(F) $(F_FLAGS) -I$(OBJ_DIR) $^ -o $@
 
 # Remove all the compiled things
 clean:
 	@echo Cleaning:
-	$(foreach obj, $(OBJS), \
-		@echo Removing: $(obj) $(\n) \
-		@rm $(obj) $(\n))
-	$(foreach lib, $(LIBS), \
-		@echo Removing: $(lib) $(\n) \
-		@rm $(lib) $(\n))
-	$(foreach test, $(TESTS), \
+	$(foreach obj, $(shell ls $(OBJ_DIR)/ 2>/dev/null), \
+		@echo Removing: $(OBJ_DIR)/$(obj) $(\n) \
+		@rm $(OBJ_DIR)/$(obj) $(\n))
+	$(foreach lib, $(shell ls $(LIB_DIR)/ 2>/dev/null), \
+		@echo Removing: $(LIB_DIR)/$(lib) $(\n) \
+		@rm $(LIB_DIR)/$(lib) $(\n))
+	$(foreach test, $(shell ls $(TEST_BIN_DIR)/ 2>/dev/null), \
 		@echo Removing: $(test) $(\n) \
-		@rm $(test) $(\n))
-	@echo Removing: $(LIB_DIR)
-	@rmdir $(LIB_DIR)
-	@echo Removing: $(OBJ_DIR)
-	@rm -r $(OBJ_DIR)
-	@echo Removing: $(TEST_BIN_DIR)
-	@rmdir $(TEST_BIN_DIR)
-	@echo Removing: $(BUILD_DIR)
-	@rm -r $(BUILD_DIR)
+		@rm $(TEST_BIN_DIR)/$(test) $(\n))
+
+ifneq ("$(wildcard $(LIB_DIR)/)", "")
+		@echo Removing: $(LIB_DIR)
+		@rmdir $(LIB_DIR)
+endif
+
+ifneq ("$(wildcard $(OBJ_DIR))", "")
+		@echo Removing: $(OBJ_DIR)
+		@rm -r $(OBJ_DIR)
+endif
+
+ifneq ("$(wildcard $(TEST_BIN_DIR))", "")
+		@echo Removing: $(TEST_BIN_DIR)
+		@rmdir $(TEST_BIN_DIR)
+endif
+
+ifneq ("$(wildcard $(BUILD_DIR))", "")
+		@echo Removing: $(BUILD_DIR)
+		@rm -r $(BUILD_DIR)
+endif
 	@echo Cleaned:
 
 # To run an specific test
