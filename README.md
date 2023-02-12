@@ -17,9 +17,9 @@ Before installing make sure that you have these dependencies to be able to compi
 
 You can download the latest [realese](https://github.com/alecksandr26/Fortran-Assertion-Module/releases) of the project, then to install the dependency you only will need to run the makefile with these flags.
 ```
-make install -B
+make install
 ```
-The `-B` flag is needed to be able to re compile everything, the `.mod` file should be installed in `/usr/include/` and the `.a` file should be installed in
+The `.mod` file should be installed in `/usr/include/` and the `.a` file should be installed in
 `/usr/lib/` and obviously, this operation will require sudo permission.
 If you want to do it manually, you will find the `.mod` file and `.a` file in the `build/` directory.
 # Getting-Started
