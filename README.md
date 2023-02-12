@@ -37,9 +37,10 @@ The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to 
 # Examples
 ## Picture Example
 This is an example of a failed assertion.
-![image](https://user-images.githubusercontent.com/66882463/208545832-dc47fd2a-bf13-46d5-ad0c-589f57ecf5cd.png)
+![ArcoLinux-2023-02-11-22-1676176413_screenshot](https://user-images.githubusercontent.com/66882463/218293166-c2df5e93-522b-4b2e-baed-5fbc2204b16d.png)
 
-![image](https://user-images.githubusercontent.com/66882463/208545605-669cbd4d-d686-487b-8cdc-53bbf2d8ef0a.png)
+
+![ArcoLinux-2023-02-11-22-1676176464_screenshot](https://user-images.githubusercontent.com/66882463/218293187-4bb0351c-a823-4a6c-9074-4338943b7e72.png)
 ## Video Example
 https://user-images.githubusercontent.com/66882463/208544892-f658eb38-eddf-4ec5-88f9-fedc046c41bc.mp4
 
