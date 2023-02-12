@@ -1,7 +1,7 @@
 # Table of Contents
 1. [Description](#Description)
 2. [Install](#Install)
-3. [Installation-from-source](##Installation-from-source)
+3. [Installation-from-source](#Installation-from-source)
 4. [Getting-Started](#Getting-Started)
 5. [Examples](#Examples)
 
