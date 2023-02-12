@@ -10,5 +10,6 @@ program test_assert
     integer :: res
 
     res = n1 + n2
-    assert(res == 3)            ! Pass this assertion
+    assert(res == 4)            ! Pass this assertion
 end program test_assert
+

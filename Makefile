@@ -115,7 +115,7 @@ tests: $(TESTS)
 
 # To build the release lib
 build: F_FLAGS = -cpp -O3
-build: $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
+build: clean $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
 	@echo Creating: $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)
 	@echo Build:
