@@ -9,9 +9,18 @@
 # Description
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
 # Install
+## Installation-with-yay
+If you have yay installed, just run this command.
+```
+yay -S assert-fortran-git
+```
 ## Installation-from-AUR
-
-
+This is the [link](https://aur.archlinux.org/assert-fortran-git.git) of the repo in AUR, then with git you can install the module, just run these two commands.
+```
+git clone https://aur.archlinux.org/assert-fortran-git.git
+cd assert-fortran-git
+makepkg -si
+```
 ## Installation-from-source
 Before installing make sure that you have these dependencies to be able to compile the project.
 1. [ar](https://man.archlinux.org/man/ar.1.en)
