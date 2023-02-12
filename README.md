@@ -22,17 +22,15 @@ The `-B` flag is needed to be able to re compile everything, the `.mod` file sho
 If you want to do it manually, you will find the `.mod` file and `.a` file in the `build/` directory.
 # Getting-Started
 As I said before this module works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives,
-then inside of the module where you want to make assertions, you only need to write this macro function.
+then inside of the module where you want to make assertions, you only need to include the header file `assertf.h`, thats why you need the flag `-cpp`.
 ```
-#define assert(cond) call assertion(cond, "cond", __FILE__, __LINE__)
+#include <assertf.h>
 ```
-As you can see it is going to call a subrutine called `assertion`, and with the `-cpp` [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives information, we can have a complete assertion.
-
 Then to compile the modules or the program, you need to set these flags.
 ```
-gfortran -cpp test_assert.f90 -I/usr/include -lassert
+gfortran -cpp your-program.f90 -I/usr/include -lassert
 ```
-The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to be able to include the `assert` module. 
+The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to be able to include the `assert` module and `assertf.h` header. 
 
 # Examples
 ## Picture Example
