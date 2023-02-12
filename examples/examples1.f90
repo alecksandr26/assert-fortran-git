@@ -1,5 +1,6 @@
-
-#include "../../include/assertf.h"
+! To compile the example just run the code like this 
+! gfortran -cpp examples1.f90 -I/usr/include -lassert  
+#include <assertf.h>
 
 program test_assert
     use assert
@@ -11,4 +12,3 @@ program test_assert
     res = n1 + n2
     assert(res == 3)            ! Pass this assertion
 end program test_assert
-    

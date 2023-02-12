@@ -24,16 +24,14 @@ SRC_DIR = src
 TEST_DIR = test
 LIB_DIR = lib
 BUILD_DIR = build
+INCLUDE_DIR = include
 INSTALL_DIR_LIB = /usr/lib
 INSTALL_DIR_HEADER = /usr/include
 
 # The nested directories
 TEST_SRC_DIR = $(addprefix $(TEST_DIR)/, src)
-
 TEST_BIN_DIR = $(addprefix $(TEST_DIR)/, bin)
-
 BUILD_OBJ_DIR = $(addprefix $(BUILD_DIR)/, obj)
-
 BUILD_LIB_DIR = $(addprefix $(BUILD_DIR)/, lib)
 
 # The dependencies 
@@ -76,7 +74,7 @@ $(LIB_DIR)/lib%.a: $(OBJ_DIR)/%.o
 # To Build the objects in the bebug mode
 $(TEST_BIN_DIR)/test_%.out: $(TEST_SRC_DIR)/test_%.f90 $(LIB_DIR)/lib%.a
 	@echo Compiling: $^ -o $@
-	$(F) $(F_FLAGS) -I$(OBJ_DIR) $^ -o $@
+	@$(F) $(F_FLAGS) -I$(OBJ_DIR) $^ -o $@
 
 # Remove all the compiled things
 clean:
@@ -135,12 +133,12 @@ install: build
 	@echo Install:
 	$(foreach lib, $(LIBS), \
 		@echo Installing: $(lib) -o $(INSTALL_DIR_LIB)/$(notdir $(lib)) $(\n) \
-		@sudo $(INSTALL) $(lib) $(INSTALL_DIR_LIB)/ $(\n))
+		sudo $(INSTALL) $(lib) $(INSTALL_DIR_LIB)/ $(\n))
 
-# The module file
 	$(foreach obj, $(OBJS), \
 		@echo Installing: $(basename $(obj)).mod -o \
 					$(INSTALL_DIR_HEADER)/$(basename $(notdir $(obj))).mod $(\n) \
-		@sudo $(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/ $(\n))
+		sudo $(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/ $(\n))
 
-
+	@echo Installing: $(INCLUDE_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
+	sudo $(INSTALL) $(INCLUDE_DIR)/assertf.h $(INSTALL_DIR_HEADER)/assertf.h
