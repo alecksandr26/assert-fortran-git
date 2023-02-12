@@ -4,7 +4,7 @@
 # then please put 'unknown'.
 
 # Maintainer: alecksandr <sansepiol26@gmail.com>
-pkgname=assert-fortran
+pkgname=assert-fortran-git
 pkgver=1.1.0
 pkgrel=1
 epoch=
@@ -13,7 +13,7 @@ arch=(x86_64)
 url="https://github.com/alecksandr26/assert-fortran"
 license=('MIT license')
 depends=()
-makedepends=(gcc-fortran git make binutils coreutils)
+makedepends=(gcc-fortran make binutils coreutils)
 optdepends=(valgrind)
 source=("git+$url")
 md5sums=('SKIP')
