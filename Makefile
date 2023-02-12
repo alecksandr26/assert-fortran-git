@@ -23,7 +23,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 TEST_DIR = test
 LIB_DIR = lib
-BUILD_DIR = build
+BUILD_DIR = compile
 INCLUDE_DIR = include
 INSTALL_DIR_LIB = /usr/lib
 INSTALL_DIR_HEADER = /usr/include
@@ -113,9 +113,9 @@ tests: $(TESTS)
 		@valgrind --leak-check=full --track-origins=yes -s ./$(test) $(\n))
 	@echo Passed:
 
-# To build the release lib
-build: F_FLAGS = -cpp -O3
-build: clean $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
+# To compile the release lib
+compile: F_FLAGS = -cpp -O3
+compile: clean $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
 	@echo Creating: $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)
 	@echo Build:
@@ -129,7 +129,7 @@ build: clean $(OBJ_DIR) $(LIB_DIR) $(TEST_BIN_DIR) $(OBJS) $(LIBS)
 		@cp $(basename $(obj)).mod $(BUILD_DIR)/ $(\n))
 
 # To install the lib
-install: build
+install: compile
 	@echo Install:
 	$(foreach lib, $(LIBS), \
 		@echo Installing: $(lib) -o $(INSTALL_DIR_LIB)/$(notdir $(lib)) $(\n) \

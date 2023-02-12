@@ -13,7 +13,7 @@ arch=(x86_64)
 url="https://github.com/alecksandr26/fortran-assertion"
 license=('MIT license')
 depends=()
-makedepends=(gfortran git make ar binutils coreutils)
+makedepends=(gcc-fortran git make binutils coreutils)
 optdepends=(valgrind)
 source=("git+$url")
 md5sums=('SKIP')
@@ -32,5 +32,5 @@ package() {
     mkdir -p usr
     mkdir -p usr/lib
     cp ../../src/$pkgname/lib/libassert.a usr/lib/
-    cp -r ../../src/$pkgname/include usr/
+    cp -r ../../src/$pkgname/include/* usr/include/
 }
