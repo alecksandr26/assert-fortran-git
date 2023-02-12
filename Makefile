@@ -176,12 +176,12 @@ install: compile
 	@echo Install:
 	$(foreach lib, $(LIBS), \
 		@echo Installing: $(lib) -o $(INSTALL_DIR_LIB)/$(notdir $(lib)) $(\n) \
-		sudo $(INSTALL) $(lib) $(INSTALL_DIR_LIB)/$(notdir lib) $(\n))
+		$(INSTALL) $(lib) $(INSTALL_DIR_LIB)/$(notdir lib) $(\n))
 
 	$(foreach obj, $(OBJS), \
 		@echo Installing: $(basename $(obj)).mod -o \
 					$(INSTALL_DIR_HEADER)/$(basename $(notdir $(obj))).mod $(\n) \
-		sudo $(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/$(basename $(obj)).mod  $(\n))
+		$(INSTALL) $(basename $(obj)).mod $(INSTALL_DIR_HEADER)/$(basename $(obj)).mod  $(\n))
 
 	@echo Installing: $(INCLUDE_DIR)/assertf.h -o $(INSTALL_DIR_HEADER)/assertf.h
-	sudo $(INSTALL) $(INCLUDE_DIR)/assertf.h $(INSTALL_DIR_HEADER)/assertf.h
+	$(INSTALL) $(INCLUDE_DIR)/assertf.h $(INSTALL_DIR_HEADER)/assertf.h
