@@ -16,7 +16,7 @@ If you have yay installed, just run this command.
 yay -S assert-fortran-git
 ```
 ## Installation-from-AUR
-This is the [link](https://aur.archlinux.org/assert-fortran-git.git) of the repo in AUR, then with git you can install the module, just run these two commands.
+This is the [link](https://aur.archlinux.org/packages/assert-fortran-git) of the repo in AUR, then with git you can install the module, just run these two commands.
 ```
 git clone https://aur.archlinux.org/assert-fortran-git.git
 cd assert-fortran-git
