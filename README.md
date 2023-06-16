@@ -41,11 +41,11 @@ sudo pacamn -U assert-fortran-git-.x.y.z-a.x86_64.pkg.tar.zst
 # Getting Started
 As I said before this module works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives,
 then inside of the module where you want to make assertions, you only need to include the header file `assertf.h`, thats why you need the flag `-cpp`.
-```
+```C
 #include <assertf.h>
 ```
 Then to compile the modules or the program, you need to set these flags.
-```
+```shell
 gfortran -cpp your-program.f90 -I/usr/include -lassert
 ```
 The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to be able to include the `assert` module and `assertf.h` header. 
