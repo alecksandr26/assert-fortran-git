@@ -15,8 +15,8 @@ PKGNAME = assert-fortran-git
 F = gfortran
 
 # Options for development
-F_DEBUG_FLAGS = -cpp -ggdb -pedantic -Wall -Jobj -Iobj
-F_COMPILE_FLAGS = -O2 -DNDEBUG -fno-stack-protector -z execstack -no-pie -Jobj -Iobj
+F_DEBUG_FLAGS = -cpp -ggdb -pedantic -Wall -Jinclude -Iinclude
+F_COMPILE_FLAGS = -O2 -DNDEBUG -fno-stack-protector -z execstack -no-pie -Jinclude -Iinclude
 F_FLAGS = $(F_DEBUG_FLAGS)
 
 AR = ar rc
