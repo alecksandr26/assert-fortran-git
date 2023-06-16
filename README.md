@@ -1,4 +1,4 @@
-# Table of Contents
+## Table of Contents
 * [Description](#Description)
 * [Install](#Install)
   * [Installation-with-yay](#Installation-with-yay)
@@ -6,7 +6,7 @@
 * [Getting-Started](#Getting-Started)
 * [Examples](#Examples)
 
-# Description
+# assert-fortran-git
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
 # Install
 ## Installation-with-yay
