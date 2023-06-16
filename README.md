@@ -1,10 +1,11 @@
 ## Table of Contents
-* [Description](https://github.com/alecksandr26/assert-fortran-git#assert-fortran-git)
-* [Install](#Install)
-  * [Installation-with-yay](#Installation-with-yay)
-  * [Installation-from-source](#Installation-from-source)
-* [Getting-Started](#Getting-Started)
-* [Examples](#Examples)
+* [Description](#assert-fortranassert-fortran-git)
+* [To install](#to-install)
+  * [Installation with yay](#installation-with-yay)
+  * [Installation from AUR](#installation-from-aur)
+  * [Installation from source](#installation-from-source)
+* [Getting Started](#getting-started)
+* [Examples](#examples)
 
 # Assert Fortran(assert-fortran-git)
 Assertion module for gfortran, It is a simple module which adds an assertion function, It works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives in the fortran compiler, many fotrans compilers have this functionality.
@@ -12,7 +13,7 @@ Assertion module for gfortran, It is a simple module which adds an assertion fun
 ## Installation with yay
 If you have yay installed, just run this command.
 ```
-yay -S assert-fortran-git
+yay -S assert-fortran-git#getting-started
 ```
 ## Installation from AUR
 This is the [link](https://aur.archlinux.org/packages/assert-fortran-git) of the repo in AUR, then with git you can install the module, just run these two commands.
@@ -35,7 +36,7 @@ make install
 The `.mod` file should be installed in `/usr/include/` and the `.a` file should be installed in
 `/usr/lib/` and obviously, this operation will require sudo permission.
 If you want to do it manually, you will find the `.mod` file and `.a` file in the `build/` directory.
-# Getting-Started
+# Getting Started
 As I said before this module works by enabling `-cpp` the [c preprocesor](https://gcc.gnu.org/onlinedocs/gfortran/Preprocessing-Options.html) directives,
 then inside of the module where you want to make assertions, you only need to include the header file `assertf.h`, thats why you need the flag `-cpp`.
 ```
