@@ -13,6 +13,6 @@ contains
             ! Print the information
             write (*, '(A, ":", I0, ": failed assertion `", A, "`")') file, line, expr
             call abort()       ! Abort the program if the assertion is not true
-        end if
+         end if
     end subroutine assertion
 end module assertf
