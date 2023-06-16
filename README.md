@@ -54,10 +54,14 @@ The `-lassert` refers to the `.a` library and the `-I/usr/include` is needed to 
 ## Picture Example
 This is an example of a failed assertion.
 
-![image](https://user-images.githubusercontent.com/66882463/228629260-d76c09a4-b787-4b41-9295-ec9b098e66cf.png)
+![image](https://github.com/alecksandr26/assert-fortran-git/assets/66882463/4b138e39-0a02-42fb-838d-ca40a61c2287)
 
-![image](https://user-images.githubusercontent.com/66882463/228629376-8e8fdd24-a885-4860-b306-9f0a86208804.png)
+![image](https://github.com/alecksandr26/assert-fortran-git/assets/66882463/845b165b-c0a7-4402-9ecf-8335af67ca4d)
+
 ## Video Example
 
-https://user-images.githubusercontent.com/66882463/228629987-9694fcaf-a9d1-42c1-b209-48696e1edfd9.mp4
+
+https://github.com/alecksandr26/assert-fortran-git/assets/66882463/2edb8032-e23a-4b9c-8969-760bd555c5f4
+
+
 
